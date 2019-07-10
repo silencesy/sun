@@ -1,15 +1,15 @@
 <!--components/base/info-item/info-item.wxml-->
 <view
-  class="info-item" data-id='{{ data._id }}' bindtap='goDetails'>
+  class="info-item">
   <i-card 
     title="{{ data.user_name }}" 
     extra="{{ data.article_classification }}"
-    
+    bind:goDetails="goDetails"
     thumb="{{ data.user_avatar }}">
-    <view slot="content">
+    <view slot="content" data-id='{{ data._id }}' bindtap='goDetails'>
       {{ data.article_content }}
     </view>
-    <view class='info-img' slot="footer">
+    <view class='info-img' data-id='{{ data._id }}' bindtap='goDetails' slot="footer">
       <image 
         wx:for="{{ data.article_images }}" 
         wx:key="{{ index }}" 
@@ -17,7 +17,7 @@
         src='{{ item }}'>
       </image>
     </view>
-    <view wx:if="{{ data.article_address }}" class='info-address' slot="footer">
+    <view bindtap='openLocation' wx:if="{{ data.article_address }}" class='info-address' slot="footer">
       <view class='address'></view>
       <view>{{ data.article_address }}</view>
     </view>
@@ -26,17 +26,17 @@
         <view class='date'></view>
         <view>{{ data.article_date }}</view>
       </view> -->
-      <view class='footer-icon'>
+      <view class='footer-icon' data-id='{{ data._id }}' bindtap='goDetails'>
         <view class='pageviews'></view>
         <view>{{ data.article_pageviews }}</view>
       </view>
-      <view class='footer-icon'>
+      <view class='footer-icon' data-id='{{ data._id }}' bindtap='goDetails'>
         <view class='comment'></view>
         <view>{{ data.article_comment_number }}</view>
       </view>
-      <view class='footer-icon'>
+      <view class='footer-icon' bindtap='like'>
         <view class='like'></view>
-        <view>{{ data.article_like }}</view>
+        <view>{{ data.article_like.length }}</view>
       </view>
     </view>
   </i-card>

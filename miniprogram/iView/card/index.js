@@ -22,5 +22,10 @@ Component({
             type: String,
             value: ''
         }
+    },
+    methods: {
+      goDetails() {
+        this.triggerEvent('goDetails');
+      }
     }
 });

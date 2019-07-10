@@ -142,7 +142,7 @@ Page({
           data.article_location = this.data.article_location;
           data.article_pageviews = 0;
           data.article_comment_number = 0;
-          data.article_like = 0;
+          data.article_like = [];
           data.article_date = new Date("2017-09-01");
           data.article_images = this.data.article_images;
           data.is_delete = false;

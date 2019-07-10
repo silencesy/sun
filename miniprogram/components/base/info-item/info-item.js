@@ -27,6 +27,22 @@ Component({
       wx.navigateTo({
         url: '../../pages/articleDetails/articleDetails?id=' + id
       })
+    },
+    goDetails() {
+      wx.navigateTo({
+        url: '../../pages/articleDetails/articleDetails?id=' + this.data.data._id
+      })
+    },
+    openLocation() {
+      console.log(this.data.data);
+      wx.openLocation({
+        latitude: this.data.data.article_location.latitude,
+        longitude: this.data.data.article_location.longitude,
+        name: this.data.data.article_address
+      })
+    },
+    like() {
+      
     }
   }
 })
