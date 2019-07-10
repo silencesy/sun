@@ -1,0 +1,32 @@
+/* components/base/swiper/swiper.wxss */
+/* 轮播图 */
+.swiper-container {
+  position: relative;
+}
+.swiper-container swiper {
+  height: 500rpx;
+}
+.swiper-container swiper swiper-item image {
+  width: 100%;
+  height: 500rpx;
+}
+.swiper-container .dots{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-container .dots .dot{
+  margin: 0 8rpx;
+  width: 30rpx;
+  height: 6rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  transition: all .6s;
+}
+.swiper-container .dots .dot.active{
+  width: 40rpx;
+  background: #f6b400;
+}

@@ -1,0 +1,28 @@
+/* pages/me/me.wxss */
+.user-container {
+  padding: 20rpx;
+}
+.user-info {
+  background: linear-gradient(#ffb21e,#f98f1e);
+  border-radius: 8rpx;
+  padding: 20rpx 0;
+}
+.avatar-name {
+  width: 100rpx;
+  margin: 0 auto;
+}
+.avatar-name image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.avatar-name view {
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+}
+.personal-operation {
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}

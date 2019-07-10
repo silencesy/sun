@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "swiper": "/components/base/swiper/swiper",
+    "infoItem": "/components/base/info-item/info-item",
+    "addItem": "/components/base/add-item/add-item"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 200
+}

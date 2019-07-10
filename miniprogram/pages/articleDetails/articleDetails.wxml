@@ -1,0 +1,23 @@
+<view class='container' wx:if="{{ data }}">
+  <view class='title'>
+    <view class='left'>
+      <image src='{{ data.user_avatar }}'></image>
+      <text>{{ data.user_name }}</text>
+    </view>
+    <view class='right'>
+    </view>
+  </view>
+  <view class='article_content'>
+   {{data.article_content}}
+  </view>
+  <view class='article_pageviews'>
+   {{data.article_pageviews}}阅读
+  </view>
+  <view class='article_images'>
+    <image 
+      wx:for="{{ data.article_images }}" 
+      wx:key="{{ index }}"
+      src='{{ item }}'
+    ></image>
+  </view>
+</view>

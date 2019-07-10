@@ -1,0 +1,36 @@
+<view class='container'>
+  <view class='title-input'>
+    <input bindinput="bindinput" placeholder-class="base-input" placeholder="输入标题... (选填)"></input>
+  </view>
+  <view class='content-textarea'>
+    <textarea 
+      placeholder="要发布的内容"
+      placeholder-class="base-input"
+      maxlength="{{ 1000 }}"
+      bindinput="bindinputcontent"
+    />
+    <view class='address' bindtap='chooseLocation'>
+      <i-icon
+        class='icon'
+        size="16" 
+        type="coordinates_fill"
+        color="#aaa"
+      />
+      <view class='text'>{{ article_address }}</view>
+    </view>
+  </view>
+  <view class='img-box'>
+    <view class='img-item' wx:for="{{ imgData }}" wx:key="{{ index }}">
+      <image mode='aspectFill' src="{{ item }}"></image>
+      <view data-index='{{ index }}' class='delete' bindtap='deleteImg'>
+        <i-icon size="28" color="#f6b400" type="delete" />
+      </view>
+    </view>
+    <view wx:if="{{ imgData.length <9 }}" class='img-item' bindtap='chooseImage'>
+      <i-icon size="48" type="add" />
+    </view>
+  </view>
+  <view class='submit-btn' bindtap='submitFrom'>
+    发布
+  </view>
+</view>

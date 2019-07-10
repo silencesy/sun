@@ -1,0 +1,6 @@
+.banner-swiper {
+  height:500rpx;
+}
+.info-container {
+  padding-bottom: 24rpx;
+}

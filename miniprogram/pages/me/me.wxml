@@ -1,0 +1,19 @@
+<!--pages/me/me.wxml-->
+<view class='user-container'>
+  <view class='user-info'>
+    <view class='avatar-name'>
+      <image src='http://api.mall.thatsmags.com/storage/headimg/nx_1554880195693154.jpg'></image>
+    <view>Rain</view>
+    </view>
+  </view>
+  <view class='personal-operation'>
+    <i-cell-group>
+      <i-cell title="我的发布" is-link>
+        <i-icon slot="icon" type="brush" size="28" color="#3e76f6" />
+      </i-cell>
+      <i-cell title="点赞评论" is-link>
+        <i-icon slot="icon" type="message" size="28" color="#f98f1e" />
+      </i-cell>
+    </i-cell-group>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<!--components/base/swiper/swiper.wxml-->
+<view class='swiper-container'>
+  <swiper 
+  indicator-dots="{{swiperParam.indicatorDots}}"
+  indicator-color="{{swiperParam.indicatorColor}}"
+  indicator-active-color="{{swiperParam.indicatorActiveColor}}"
+  autoplay="{{swiperParam.autoplay}}"
+  circular="{{swiperParam.circular}}"
+  bindchange="swiperChange" class='swiper'>
+    <block wx:for="{{swiperData}}" wx:key="{{index}}">
+      <swiper-item data-id="{{ item._id }}" bindtap="goDetails">
+        <image src="{{item.pic}}" mode="aspectFill" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="dots">
+      <block wx:for="{{swiperData}}" wx:key="index">
+        <view data-i='{{index}}' bindtap='fn' class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+      </block>
+    </view>
+</view>
+

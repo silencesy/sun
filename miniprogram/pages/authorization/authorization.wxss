@@ -1,0 +1,35 @@
+.avatar {
+  width: 150rpx;
+  margin: 40% auto auto auto;
+}
+.avatar .avatar-img {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar view {
+  text-align: center;
+  font-size: 28rpx;
+  color: #222;
+  margin-top: 10rpx;
+}
+.info {
+  margin-top: 10%;
+}
+.info .info-title {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+}
+.info-btn {
+  width: 300rpx;
+  margin-top: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #f6b400;
+  color: #fff;
+  border-width: 0;
+  border-color: transparent;
+  font-size: 28rpx;
+}

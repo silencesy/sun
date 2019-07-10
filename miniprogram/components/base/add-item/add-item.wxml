@@ -1,0 +1,4 @@
+<!--components/base/add-item/add-item.wxml-->
+<view class='add-icon' bindtap='addArticle'>
+  <i-icon type="add" size="28" />
+</view>
