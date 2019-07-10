@@ -18,6 +18,7 @@
       wx:for="{{ data.article_images }}" 
       wx:key="{{ index }}"
       src='{{ item }}'
+      mode="widthFix"
     ></image>
   </view>
 </view>
