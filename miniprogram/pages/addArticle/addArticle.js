@@ -143,7 +143,7 @@ Page({
           data.article_pageviews = 0;
           data.article_comment_number = 0;
           data.article_like = [];
-          data.article_date = new Date("2017-09-01");
+          data.article_date = new Date();
           data.article_images = this.data.article_images;
           data.is_delete = false;
           data.article_address = this.data.article_address == '你在哪里？' ? '' : this.data.article_address;

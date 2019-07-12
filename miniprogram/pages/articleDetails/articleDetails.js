@@ -22,15 +22,18 @@ Page({
     
   },
   getData(id) {
-    articleDB.doc(id).get().then(res => {
-      this.setData({
-        data: res.data
-      })
-    })
-    articleDB.doc(id).update({
+    const that = this;
+    wx.cloud.callFunction({
+      name: 'articleDetails',
       data: {
-        article_pageviews: db.command.inc(1)
+        id: id
       }
+    }).then(res => {
+      that.setData({
+        data: res.result.data
+      })
+    }).catch(err => {
+      console.log(err)
     })
   },
 

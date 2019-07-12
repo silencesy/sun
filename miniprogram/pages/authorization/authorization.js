@@ -67,9 +67,12 @@ Page({
   },
   onGotUserInfo({ detail }) {
     const userInfo = detail.userInfo;
-    userDB.add({
+    wx.cloud.callFunction({
+      name: 'login',
       data: userInfo
     }).then(res => {
+      userInfo.appid = res.result.appid;
+      userInfo.openid = res.result.openid;
       wx.setStorage({
         key: 'userInfo',
         data: userInfo
@@ -78,6 +81,8 @@ Page({
       wx.navigateBack({
         delta: 1
       })
+    }).catch(err => {
+      console.log(err)
     })
   }
 })

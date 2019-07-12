@@ -8,12 +8,11 @@ Page({
   data: {
     swiperData: null,
     articleData: [],
-    params: {
-      page: -1,
-      pageSize: 10
-    }
   },
-
+  params: {
+    page: 0,
+    pageSize: 10
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -55,19 +54,16 @@ Page({
    */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();
-    const that = this;
-    let params = that.data.params;
-    params.page = -1;
-    that.setData({
-      params: params
-    })
+    this.params.page = 0;
     this.getArticleData(true);
+    this.getSwiperData();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.params.page++;
     this.getArticleData(false);
   },
 
@@ -78,37 +74,24 @@ Page({
 
   },
   getArticleData(isInit) {
-    // wx.cloud.callFunction({
-    //   name: 'articleList'
-    // }).then(res=>{
-    //   console.log(res)
-    // }).catch(err=>{
-    //   console.log(err)
-    // })
     const that = this;
-    let params = that.data.params;
-    params.page++;
-    that.setData({
-      params: params
-    })
-    console.log(params.page * params.pageSize);
-    articleDB.skip(params.page * params.pageSize == 0 ? 1 : params.page * params.pageSize).limit(params.pageSize).get({
-      success: function (res) {
-        console.log(res);
-        if (isInit) {
-          console.log('-------')
-          that.setData({
-            articleData: res.data
-          })
-        } else {
-          console.log('++++++++')
-          that.setData({
-            articleData: that.data.articleData.concat(res.data)
-          })
-        }
-        wx.hideNavigationBarLoading() //完成停止加载
-        wx.stopPullDownRefresh()
+    wx.cloud.callFunction({
+      name: 'articleList',
+      data: that.params
+    }).then(res=>{
+      if (isInit) {
+        that.setData({
+          articleData: res.result.data
+        })
+      } else {
+        that.setData({
+          articleData: that.data.articleData.concat(res.result.data)
+        })
       }
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh()
+    }).catch(err=>{
+      console.log(err)
     })
   },
   getSwiperData() {

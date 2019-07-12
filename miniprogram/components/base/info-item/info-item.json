@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "i-card": "/iView/card/index"
+    "i-card": "/iView/card/index",
+    "i-icon": "/iView/icon/index"
   }
 }

@@ -4,3 +4,6 @@
 .info-container {
   padding-bottom: 24rpx;
 }
+.iconfont.sunpinglun {
+  font-size: 18px;
+}
