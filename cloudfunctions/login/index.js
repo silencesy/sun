@@ -19,6 +19,7 @@ const userDB = db.collection('user')
  */
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  const openid = event.userInfo
   await userDB.add({
     data: event
   })

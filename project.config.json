@@ -61,10 +61,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "文章详情页",
 					"pathName": "pages/articleDetails/articleDetails",
-					"query": "id=9afd9b6a5d25540104628fe11af7f8f0",
+					"query": "id=13dba11c5d2be74007bdc9cf146b27e1",
 					"scene": null
 				}
 			]

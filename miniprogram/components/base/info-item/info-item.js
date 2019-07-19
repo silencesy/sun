@@ -51,10 +51,9 @@ Component({
             isLike: !this.data.data.isLike
           }
         }).then(res => {
-          console.log(res);
           let data = this.data.data;
-          data.isLike = !this.data.data.isLike;
-          !this.data.data.isLike ? data.article_like.push(app.globalData.userInfo.openid) : data.article_like.pop()
+          data.isLike = !data.isLike;
+          data.isLike ? data.article_like.push(app.globalData.userInfo.openid) : data.article_like.pop()
           this.setData({
             data: data
           })

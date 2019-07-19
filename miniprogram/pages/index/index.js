@@ -1,3 +1,4 @@
+const app = getApp()
 const db = wx.cloud.database()
 const articleDB = db.collection('article')
 Page({
@@ -11,12 +12,14 @@ Page({
   },
   params: {
     page: 0,
-    pageSize: 10
+    pageSize: 10,
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.params.openid = app.globalData.userInfo ? app.globalData.userInfo.openid: null;
     this.getArticleData();
     this.getSwiperData();
   },

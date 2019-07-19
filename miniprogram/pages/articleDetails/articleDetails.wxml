@@ -12,6 +12,7 @@
   </view>
   <view class='article_pageviews'>
    {{data.article_pageviews}}阅读
+   {{data.article_date}}
   </view>
   <view class='article_images'>
     <image 
@@ -21,4 +22,38 @@
       mode="widthFix"
     ></image>
   </view>
+  <view class='article-bottom'>
+    <view class='left'>
+      <view bindtap='showComment'>
+        <i-icon size="18" type="message_fill" color="#bbbbbb" />
+        <view class='number'>{{data.article_comment_number}}</view>
+      </view>
+      <view bindtap='like'>
+        <i-icon size="18" type="like_fill" color="{{ data.isLike?'#f6b400':'#bbbbbb' }}" />
+        <view class='number'>{{data.article_like.length}}</view>
+      </view>
+    </view>
+    <view class='right'>
+      <i-icon size="18" type="share_fill" color="#bbbbbb" />
+      <view class='share'>分享</view>
+      <button class='share-btn' open-type="share"></button>
+    </view>
+    
+  </view>
+  <i-action-sheet 
+    visible="{{ visible }}" 
+    bind:cancel="handleCancel" 
+    bind:click="handleClickItem2" 
+    mask-closable="{{ true }}">
+      <view class='addComment' slot="header">
+        <input 
+          confirm-type="send" 
+          bindconfirm="submitComment" 
+          placeholder="评论"
+          value="{{ commentValue }}"
+          bindinput="inputComment"
+          cursor-spacing="{{ 20 }}"
+          focus="{{ focus }}"></input>
+      </view>
+</i-action-sheet>
 </view>
