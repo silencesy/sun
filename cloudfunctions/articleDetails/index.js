@@ -27,6 +27,10 @@ exports.main = async (event, context) => {
       articleDB.doc(id).get().then(res=>{
         var data = res;
         data.data.article_date = handlePublishTimeDesc(data.data.article_date);
+        data.data.article_comment.forEach(element=>{
+          element.date = handlePublishTimeDesc(element.date)
+        });
+        data.data.article_comment_number = data.data.article_comment.length + data.data.article_comment_reply.length;
         if (openid && data.data.article_like.includes(openid)) {
           data.data.isLike = true;
         } else {
@@ -72,7 +76,12 @@ exports.main = async (event, context) => {
         if (exceedHour < 24 && exceedHour > 0) {
           return exceedHour + '小时前';
         } else {
-          return exceedMin + '分钟前';
+          if (exceedMin == 0) {
+            return '刚刚';
+          } else {
+            return exceedMin + '分钟前';
+          }
+          
         }
       }
     }

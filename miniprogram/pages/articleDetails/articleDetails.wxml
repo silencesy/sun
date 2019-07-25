@@ -1,6 +1,6 @@
 <view class='container' wx:if="{{ data }}">
   <view class='title'>
-    <view class='left'>
+    <view class='left' bindtap='goUserHome'>
       <image src='{{ data.user_avatar }}'></image>
       <text>{{ data.user_name }}</text>
     </view>
@@ -21,6 +21,55 @@
       src='{{ item }}'
       mode="widthFix"
     ></image>
+  </view>
+  <view class='comment-content'>
+    <view class='comment-title'>
+      评论
+    </view>
+    <view class='comment-item' 
+      wx:for="{{ data.article_comment }}" 
+      wx:for-item="parentsItem"
+      wx:for-index="parentIndex"
+      wx:key="{{ parentIndex }}">
+      <image bindtap='goUserHome' src="{{ parentsItem.avatarUrl }}"></image>
+      <view class='comment-info'>
+        <view bindtap='goUserHome' class='comment-info-name'>{{ parentsItem.user_name }}</view>
+        <view class='comment-info-content'>{{ parentsItem.content }}</view>
+        <view class='reply-content'>
+          <view wx:for="{{ data.article_comment_reply }}" wx:if="{{ parentsItem.id == item.parents_id }}" wx:key="{{ index }}">
+            <view
+              class='row_comment'
+              data-name='{{ item.user_name }}'
+              data-parents_id='{{ parentsItem.id }}'
+              data-superior_id='{{ item.id }}'
+              bindtap='replyComment' wx:if="{{ item.parents_id == item.superior_id}}">
+              <text class='user_name_comment'>{{ item.user_name }}: </text>
+              <text class='comment-info-content-reply'>{{ item.content }}</text>
+            </view>
+            <view
+              class='row_comment'
+              data-name='{{ item.user_name }}'
+              data-parents_id='{{ parentsItem.id }}'
+              data-superior_id='{{ item.id }}'
+              bindtap='replyComment' wx:else>
+              <text data-name='{{ item.user_name }}' class='user_name_comment'>{{ item.user_name }}</text>
+              <text> 回复 </text>
+              <text data-name='{{ item.user_name }}' class='user_name_comment'>{{ item.superior_name }}: </text>
+              <text class='comment-info-content-reply'>{{ item.content }}</text>
+            </view>
+          </view>
+        </view>
+        <view class="comment-info-date">
+          <view>{{ parentsItem.date }}</view>
+          <view
+            class='reply-comment-btn'
+            data-name='{{ parentsItem.user_name }}'
+            data-parents_id='{{ parentsItem.id }}'
+            data-superior_id='{{ parentsItem.id }}'
+            bindtap='replyComment'>回复</view>
+        </view>
+      </view>
+    </view>
   </view>
   <view class='article-bottom'>
     <view class='left'>
@@ -49,10 +98,10 @@
         <input 
           confirm-type="send" 
           bindconfirm="submitComment" 
-          placeholder="评论"
+          placeholder="{{ commentPlaceholder }}"
           value="{{ commentValue }}"
           bindinput="inputComment"
-          cursor-spacing="{{ 20 }}"
+          cursor-spacing="{{ 8 }}"
           focus="{{ focus }}"></input>
       </view>
 </i-action-sheet>

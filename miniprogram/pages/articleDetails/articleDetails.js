@@ -9,7 +9,10 @@ Page({
     data: null,
     visible: false,
     focus: false,
-    commentValue: ''
+    commentValue: '',
+    commentPlaceholder: '评论',
+    superior_id: '',
+    parents_id: ''
   },
 
   /**
@@ -32,7 +35,6 @@ Page({
         openid: app.globalData.userInfo ? app.globalData.userInfo.openid : null
       }
     }).then(res => {
-      console.log(res);
       that.setData({
         data: res.result.data
       })
@@ -129,7 +131,10 @@ Page({
   },
   handleCancel() {
     this.setData({
-      visible: false
+      visible: false,
+      commentPlaceholder: '评论',
+      parents_id: '',
+      superior_id: ''
     });
   },
   inputComment({ detail }) {
@@ -139,17 +144,95 @@ Page({
     })
   },
   submitComment() {
-    let commentValue = this.data.commentValue;
-    if (commentValue.length == 0) {
-      wx.showToast({
-        title: '请输入评论内容！',
-        icon: 'none',
-        duration: 2000
-      })
+    if (app.globalData.userInfo) {
+      const that = this;
+      let commentValue = that.data.commentValue;
+      if (commentValue.length == 0) {
+        wx.showToast({
+          title: '请输入评论内容！',
+          icon: 'none',
+          duration: 2000
+        })
+      } else {
+        if (that.data.commentPlaceholder == '评论') {
+          wx.cloud.callFunction({
+            name: 'addComment',
+            data: {
+              avatarUrl: app.globalData.userInfo.avatarUrl,
+              content: that.data.commentValue,
+              openid: app.globalData.userInfo.openid,
+              user_name: app.globalData.userInfo.nickName,
+              _id: that.data.id,
+            }
+          }).then(res => {
+            let data = that.data.data;
+            data.article_comment = res.result;
+            wx.showToast({
+              title: '成功！',
+              duration: 2000
+            })
+            that.setData({
+              data: data,
+              commentValue: '',
+              visible: false
+            })
+          }).catch(err => {
+            console.log(err)
+          })
+        } else {
+          wx.cloud.callFunction({
+            name: 'replyComment',
+            data: {
+              avatarUrl: app.globalData.userInfo.avatarUrl,
+              content: that.data.commentValue,
+              openid: app.globalData.userInfo.openid,
+              user_name: app.globalData.userInfo.nickName,
+              _id: that.data.id,
+              parents_id: that.data.parents_id,
+              superior_id: that.data.superior_id,
+              superior_name: that.data.superior_name
+            }
+          }).then(res => {
+            console.log(res);
+            let data = that.data.data;
+            data.article_comment_reply = res.result;
+            wx.showToast({
+              title: '成功！',
+              duration: 2000
+            })
+            that.setData({
+              data: data,
+              commentValue: '',
+              visible: false
+            })
+          }).catch(err => {
+            console.log(err)
+          })
+        }
+      }
     } else {
-      this.setData({
-        visible: false
-      });
+      wx.navigateTo({
+        url: '../../pages/authorization/authorization',
+      })
     }
+  },
+  replyComment({ currentTarget }) {
+    console.log(currentTarget);
+    var { name, parents_id, superior_id } = currentTarget.dataset;
+    name = '回复 ' + currentTarget.dataset.name;
+    this.setData({
+      commentPlaceholder: name,
+      superior_name: currentTarget.dataset.name,
+      parents_id,
+      superior_id
+    })
+    this.showComment();
+  },
+  goUserHome() {
+    wx.showToast({
+      title: '用户主页待开发',
+      icon: 'none',
+      duration: 2000
+    })
   }
 })

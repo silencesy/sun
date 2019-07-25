@@ -15,6 +15,7 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
+  background-color: #fff;
 }
 .avatar-name view {
   text-align: center;
@@ -25,4 +26,18 @@
   margin-top: 20rpx;
   border-radius: 8rpx;
   overflow: hidden;
+}
+.col-class {
+  text-align: center;
+}
+.col-class .text {
+  font-size: 28rpx;
+  color: #888;
+}
+.features-row {
+  padding: 20rpx 0;
+  background-color: #fff;
+  margin-top: 20rpx;
+  border-radius:8rpx;
+  overflow:hidden;
 }

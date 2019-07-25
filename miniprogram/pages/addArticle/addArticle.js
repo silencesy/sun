@@ -110,7 +110,7 @@ Page({
   submitFrom() {
     const that = this;
     if (app.globalData.userInfo) {
-      if (this.data.article_content || that.data.article_images.length>0) {
+      if (that.data.article_content || that.data.imgData.length>0) {
         wx.showLoading({
           title: '提交中',
         })
@@ -141,7 +141,8 @@ Page({
           data.article_content = this.data.article_content;
           data.article_location = this.data.article_location;
           data.article_pageviews = 0;
-          data.article_comment_number = 0;
+          data.article_comment_reply = [];
+          data.article_comment = [];
           data.article_like = [];
           data.article_date = new Date();
           data.article_images = this.data.article_images;

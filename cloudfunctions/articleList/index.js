@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
 
     data.data.forEach(element=>{
       element.article_date = handlePublishTimeDesc(element.article_date)
+      element.article_comment_number = element.article_comment.length + element.article_comment_reply.length;
       if (openid && element.article_like.includes(openid)) {
         element.isLike =true;
       } else {
@@ -53,7 +54,11 @@ exports.main = async (event, context) => {
           if (exceedHour < 24 && exceedHour > 0) {
             return exceedHour + '小时前';
           } else {
-            return exceedMin + '分钟前';
+            if (exceedMin == 0) {
+              return '刚刚';
+            } else {
+              return exceedMin + '分钟前';
+            }
           }
         }
       }

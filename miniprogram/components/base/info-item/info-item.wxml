@@ -22,7 +22,7 @@
       <view>{{ data.article_address }}</view>
     </view>
     <view class='footer' slot="footer">
-      <view class='footer-icon'>
+      <view class='footer-icon' data-id='{{ data._id }}' bindtap='goDetails'>
         <i-icon size="18" type="time_fill" />
         <view>{{ data.article_date }}</view>
       </view>

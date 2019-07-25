@@ -1,17 +1,45 @@
 <!--pages/me/me.wxml-->
 <view class='user-container'>
-  <view class='user-info'>
+  <view class='user-info' wx:if="{{userInfo}}">
     <view class='avatar-name'>
-      <image src='http://api.mall.thatsmags.com/storage/headimg/nx_1554880195693154.jpg'></image>
-    <view>Rain</view>
+      <image src='{{userInfo.avatarUrl}}'></image>
+    <view>{{userInfo.nickName}}</view>
     </view>
+  </view>
+  <view class='user-info' bindtap='goLogin' wx:else>
+    <view class='avatar-name'>
+      <image></image>
+    <view>未登录</view>
+    </view>
+  </view>
+  <view class='features-row'>
+    <i-row>
+      <i-col span="8" i-class="col-class">
+        <view>
+          <i-icon color='#999' size="28" type="brush" />
+        </view>
+        <view class='text'>动态</view>
+      </i-col>
+      <i-col span="8" i-class="col-class">
+        <view>
+          <i-icon color='#999' size="28" type="collection" />
+        </view>
+        <view class='text'>关注</view>
+      </i-col>
+      <i-col span="8" i-class="col-class">
+        <view>
+          <i-icon color='#999' size="28" type="like" />
+        </view>
+        <view class='text'>粉丝</view>
+      </i-col>
+    </i-row>
   </view>
   <view class='personal-operation'>
     <i-cell-group>
-      <i-cell title="我的发布" is-link>
-        <i-icon slot="icon" type="brush" size="28" color="#3e76f6" />
+      <i-cell title="点赞" is-link>
+        <i-icon slot="icon" type="praise" size="28" color="#3e76f6" />
       </i-cell>
-      <i-cell title="点赞评论" is-link>
+      <i-cell title="评论" is-link>
         <i-icon slot="icon" type="message" size="28" color="#f98f1e" />
       </i-cell>
     </i-cell-group>
