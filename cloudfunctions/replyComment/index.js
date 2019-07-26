@@ -13,7 +13,6 @@ const articleDB = db.collection('article')
 exports.main = async (event, context) => {
   var data = event;
   const _id = event._id;
-  const { avatarUrl, content, openid, parents_id, superior_id, superior_name, user_name } = event;
   const date = new Date();
   const id = Number(String(new Date().getTime()) + String(Math.floor(Math.random() * 100000)));
   delete data.userInfo;

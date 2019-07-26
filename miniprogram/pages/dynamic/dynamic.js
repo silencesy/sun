@@ -1,6 +1,4 @@
-const app = getApp()
-const db = wx.cloud.database()
-const userDB = db.collection('user')
+// pages/dynamic/dynamic.js
 Page({
 
   /**
@@ -64,24 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  onGotUserInfo({ detail }) {
-    var userInfo = detail.userInfo;
-    wx.cloud.callFunction({
-      name: 'login',
-      data: userInfo
-    }).then(res => {
-      userInfo = res.result;
-      wx.setStorage({
-        key: 'userInfo',
-        data: userInfo
-      });
-      app.globalData.userInfo = userInfo;
-      wx.navigateBack({
-        delta: 1
-      })
-    }).catch(err => {
-      console.log(err)
-    })
   }
 })

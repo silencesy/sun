@@ -16,21 +16,21 @@
     <i-row>
       <i-col span="8" i-class="col-class">
         <view>
-          <i-icon color='#999' size="28" type="brush" />
+          <i-icon color='#f98f1e' size="28" type="brush" />
         </view>
-        <view class='text'>动态</view>
+        <view class='text'>发布(<text class="number">0</text>)</view>
       </i-col>
       <i-col span="8" i-class="col-class">
         <view>
-          <i-icon color='#999' size="28" type="collection" />
+          <i-icon color='#f98f1e' size="28" type="collection" />
         </view>
-        <view class='text'>关注</view>
+        <view class='text'>关注(<text class="number">0</text>)</view>
       </i-col>
       <i-col span="8" i-class="col-class">
         <view>
-          <i-icon color='#999' size="28" type="like" />
+          <i-icon color='#f98f1e' size="28" type="like" />
         </view>
-        <view class='text'>粉丝</view>
+        <view class='text'>粉丝(<text class="number">0</text>)</view>
       </i-col>
     </i-row>
   </view>

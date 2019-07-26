@@ -11,7 +11,7 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const openid = event.openid;
+    const openid = event.userInfo.openId;
     var data = await db.collection('article').orderBy('article_date','desc').skip(event.page * event.pageSize).limit(event.pageSize).get();
 
     data.data.forEach(element=>{

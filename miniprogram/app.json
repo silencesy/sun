@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/history/history",
+    "pages/dynamic/dynamic",
     "pages/addArticle/addArticle",
     "pages/articleDetails/articleDetails",
     "pages/me/me",
@@ -17,20 +18,20 @@
   "tabBar": {
     "backgroundColor": "#fff",
     "borderStyle": "black",
-    "color": "#bfbfbf",
+    "color": "#aaaaaa",
     "selectedColor": "#f6b400",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "动态",
-        "iconPath": "images/tab-img/dynamic.png",
-        "selectedIconPath": "images/tab-img/dynamic-active.png"
+        "text": "主页",
+        "iconPath": "images/tab-img/home.png",
+        "selectedIconPath": "images/tab-img/home-active.png"
       },
       {
-        "pagePath": "pages/history/history",
-        "text": "历史",
-        "iconPath": "images/tab-img/history.png",
-        "selectedIconPath": "images/tab-img/history-active.png"
+        "pagePath": "pages/dynamic/dynamic",
+        "text": "消息",
+        "iconPath": "images/tab-img/dynamic.png",
+        "selectedIconPath": "images/tab-img/dynamic-active.png"
       },
       {
         "pagePath": "pages/me/me",

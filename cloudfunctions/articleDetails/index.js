@@ -11,7 +11,7 @@ const articleDB = db.collection('article')
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-    const openid = event.openid;
+    const openid = event.userInfo.openId;
     const id = event.id;
     const updateData = (id) => new Promise((resolve, reject) => {
       articleDB.doc(id).update({

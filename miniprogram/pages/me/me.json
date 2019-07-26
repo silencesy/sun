@@ -4,6 +4,7 @@
     "i-cell": "/iView/cell/index",
     "i-icon": "/iView/icon/index",
     "i-row": "/iView/row/index",
-    "i-col": "/iView/col/index"
+    "i-col": "/iView/col/index",
+    "i-badge": "/iView/badge/index"
   }
 }

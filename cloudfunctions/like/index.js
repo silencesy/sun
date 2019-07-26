@@ -17,12 +17,10 @@ Array.prototype.remove = function (val) {
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const openid = event.openid;
+  const openid = event.userInfo.openId;
   const id = event.id;
   const isLike = event.isLike;
   const data = await articleDB.doc(id).get()
-  console.log(data.data.article_like, openid)
-  console.log(data.data.article_like.includes(openid));
   if (!data.data.article_like.includes(openid) && isLike == true) {
     data.data.article_like.push(openid);
     await articleDB.doc(id).update({

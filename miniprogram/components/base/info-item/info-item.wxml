@@ -35,7 +35,7 @@
         <view>{{ data.article_comment_number }}</view>
       </view>
       <view class='footer-icon' bindtap='like'>
-        <i-icon size="18" color="{{ data.isLike?'#f6b400':'' }}" type="like_fill" />
+        <i-icon size="18" color="{{ data.isLike?'#f6b400':'' }}" type="praise_fill" />
         <view>{{ data.article_like.length }}</view>
       </view>
     </view>

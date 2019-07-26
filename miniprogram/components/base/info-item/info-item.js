@@ -46,11 +46,11 @@ Component({
         wx.cloud.callFunction({
           name: 'like',
           data: {
-            openid: app.globalData.userInfo.openid,
             id: this.data.data._id,
             isLike: !this.data.data.isLike
           }
         }).then(res => {
+          console.log(res);
           let data = this.data.data;
           data.isLike = !data.isLike;
           data.isLike ? data.article_like.push(app.globalData.userInfo.openid) : data.article_like.pop()

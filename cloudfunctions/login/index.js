@@ -18,13 +18,19 @@ const userDB = db.collection('user')
  * 
  */
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-  const openid = event.userInfo
-  await userDB.add({
-    data: event
-  })
-  return {
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID
+  let userData = await userDB.where({
+    userInfo: event.userInfo
+  }).get();
+  if (userData.data.length>0) {
+    await userDB.where({
+      userInfo: event.userInfo
+    }).update({
+      data: event
+    })
+  } else {
+    await userDB.add({
+      data: event
+    })
   }
+  return event
 }

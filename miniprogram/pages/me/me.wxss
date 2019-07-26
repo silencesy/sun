@@ -41,3 +41,6 @@
   border-radius:8rpx;
   overflow:hidden;
 }
+.number {
+  color: #ffb21e;
+}

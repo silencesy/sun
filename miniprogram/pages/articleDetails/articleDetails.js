@@ -31,8 +31,7 @@ Page({
     wx.cloud.callFunction({
       name: 'articleDetails',
       data: {
-        id: id,
-        openid: app.globalData.userInfo ? app.globalData.userInfo.openid : null
+        id: id
       }
     }).then(res => {
       that.setData({
@@ -116,10 +115,6 @@ Page({
 
   },
   showComment() {
-    // wx.  ({
-    //   title: '待开发'
-    // })
-
     this.setData({
       visible: true
     });
@@ -160,7 +155,7 @@ Page({
             data: {
               avatarUrl: app.globalData.userInfo.avatarUrl,
               content: that.data.commentValue,
-              openid: app.globalData.userInfo.openid,
+              openid: app.globalData.userInfo.userInfo.openId,
               user_name: app.globalData.userInfo.nickName,
               _id: that.data.id,
             }
@@ -185,7 +180,7 @@ Page({
             data: {
               avatarUrl: app.globalData.userInfo.avatarUrl,
               content: that.data.commentValue,
-              openid: app.globalData.userInfo.openid,
+              openid: app.globalData.userInfo.userInfo.openId,
               user_name: app.globalData.userInfo.nickName,
               _id: that.data.id,
               parents_id: that.data.parents_id,
