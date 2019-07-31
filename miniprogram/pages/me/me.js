@@ -21,6 +21,11 @@ Page({
       userInfo
     })
   },
+  bindGoRelease() {
+    wx.navigateTo({
+      url: '../release/release',
+    })
+  },
   goLogin() {
     wx.navigateTo({
       url: '../authorization/authorization',

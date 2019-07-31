@@ -8,6 +8,7 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 const articleDB = db.collection('article')
+const messageDB = db.collection('message')
 
 
 // 云函数入口函数
@@ -25,6 +26,22 @@ exports.main = async (event, context) => {
     await db.collection('article').doc(_id).update({
       data: {
         article_comment: _.unshift([data])
+      }
+    })
+    // 获取发布者的id 
+    const articleUserId = await articleDB.doc(_id).field({
+      _openid: true
+    }).get();
+    await messageDB.add({
+      data: {
+        date: new Date(),
+        article_id: _id,
+        content: data.content,
+        is_delete: false,
+        is_read: false,
+        type: "comment",
+        trigger: data.openid,
+        passive: articleUserId.data._openid
       }
     })
     // 获取评论

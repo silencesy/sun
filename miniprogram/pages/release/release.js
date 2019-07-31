@@ -1,29 +1,31 @@
 const app = getApp()
-const db = wx.cloud.database()
-const articleDB = db.collection('article')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperData: null,
     articleData: [],
   },
   params: {
-    user: false,
+    user: true,
     page: 0,
     pageSize: 10,
-    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setUserInfo();
     this.getArticleData();
-    this.getSwiperData();
   },
-
+  setUserInfo() {
+    console.log(app)
+    let userInfo = app.globalData.userInfo || '';
+    this.setData({
+      userInfo
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -59,7 +61,6 @@ Page({
     wx.showNavigationBarLoading();
     this.params.page = 0;
     this.getArticleData(true);
-    this.getSwiperData();
   },
 
   /**
@@ -81,7 +82,7 @@ Page({
     wx.cloud.callFunction({
       name: 'articleList',
       data: that.params
-    }).then(res=>{
+    }).then(res => {
       if (isInit) {
         that.setData({
           articleData: res.result.data
@@ -93,28 +94,8 @@ Page({
       }
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh()
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
-    })
-  },
-  getSwiperData() {
-    const that = this;
-    articleDB.orderBy('article_pageviews', 'desc').limit(3).field({
-      _id: true,
-      article_images: true
-    }).get({}).then(res=>{
-      let data = res.data;
-      let swiperData = [];
-      data.forEach(element=>{
-        let { _id, article_images} = element;
-        let obj = {};
-        obj._id = _id;
-        obj.pic = article_images[0];
-        swiperData.push(obj);
-      })
-      that.setData({
-        swiperData
-      })
     })
   }
 })

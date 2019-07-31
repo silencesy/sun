@@ -12,7 +12,15 @@ const _ = db.command
 exports.main = async (event, context) => {
   try {
     const openid = event.userInfo.openId;
-    var data = await db.collection('article').orderBy('article_date','desc').skip(event.page * event.pageSize).limit(event.pageSize).get();
+    const user = event.user;
+    if (user) {
+      var data = await db.collection('article').where({
+        _openid: openid
+      }).orderBy('article_date', 'desc').skip(event.page * event.pageSize).limit(event.pageSize).get();
+    } else {
+      var data = await db.collection('article').orderBy('article_date', 'desc').skip(event.page * event.pageSize).limit(event.pageSize).get();
+    }
+    
 
     data.data.forEach(element=>{
       element.article_date = handlePublishTimeDesc(element.article_date)

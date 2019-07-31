@@ -7,6 +7,7 @@ cloud.init({
 
 const db = cloud.database()
 const articleDB = db.collection('article')
+const messageDB = db.collection('message')
 const _ = db.command
 Array.prototype.remove = function (val) {
   var index = this.indexOf(val);
@@ -28,6 +29,21 @@ exports.main = async (event, context) => {
         article_like: data.data.article_like
       }
     })
+    // 获取发布者的id 
+    const articleUserId = await articleDB.doc(id).field({
+      _openid: true
+    }).get();
+    await messageDB.add({
+      data: {
+        date: new Date(),
+        article_id: id,
+        is_delete: false,
+        is_read: false,
+        type: "like",
+        trigger: openid,
+        passive: articleUserId.data._openid
+      }
+    })
     return {
       code: 1,
       message: '点赞成功'
@@ -39,6 +55,11 @@ exports.main = async (event, context) => {
         article_like: data.data.article_like
       }
     })
+    await messageDB.where({
+      article_id: id,
+      trigger: openid,
+      type: 'like'
+    }).remove();
     return {
       code: 1,
       message: '取消点赞'

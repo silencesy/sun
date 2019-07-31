@@ -14,7 +14,7 @@
   </view>
   <view class='features-row'>
     <i-row>
-      <i-col span="8" i-class="col-class">
+      <i-col bindtap="bindGoRelease" span="8" i-class="col-class">
         <view>
           <i-icon color='#f98f1e' size="28" type="brush" />
         </view>

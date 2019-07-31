@@ -1,0 +1,14 @@
+<view>
+  <view class='info-container'>
+    <infoItem
+      wx:for="{{ articleData }}"
+      wx:key="{{ index }}"
+      data="{{ item }}"
+      pageviews="iconfont sunliulanliang"
+      date="iconfont sunshijian"
+      like="iconfont sundianzan_active-copy-copy"
+      comment="iconfont sunpinglun"
+      address="iconfont sundingweiweizhi"
+     />
+  </view>
+</view>

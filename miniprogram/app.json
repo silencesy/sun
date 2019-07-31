@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/history/history",
     "pages/dynamic/dynamic",
+    "pages/release/release",
     "pages/addArticle/addArticle",
     "pages/articleDetails/articleDetails",
     "pages/me/me",

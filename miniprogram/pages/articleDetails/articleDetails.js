@@ -185,7 +185,8 @@ Page({
               _id: that.data.id,
               parents_id: that.data.parents_id,
               superior_id: that.data.superior_id,
-              superior_name: that.data.superior_name
+              superior_name: that.data.superior_name,
+              superior_openid: that.data.superior_openid,
             }
           }).then(res => {
             console.log(res);
@@ -213,13 +214,14 @@ Page({
   },
   replyComment({ currentTarget }) {
     console.log(currentTarget);
-    var { name, parents_id, superior_id } = currentTarget.dataset;
+    var { name, parents_id, superior_id, superior_openid } = currentTarget.dataset;
     name = '回复 ' + currentTarget.dataset.name;
     this.setData({
       commentPlaceholder: name,
       superior_name: currentTarget.dataset.name,
       parents_id,
-      superior_id
+      superior_id,
+      superior_openid
     })
     this.showComment();
   },
