@@ -71,6 +71,7 @@ Page({
       name: 'login',
       data: userInfo
     }).then(res => {
+      console.log(res);
       userInfo = res.result;
       wx.setStorage({
         key: 'userInfo',

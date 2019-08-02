@@ -107,10 +107,13 @@ Page({
       let swiperData = [];
       data.forEach(element=>{
         let { _id, article_images} = element;
-        let obj = {};
-        obj._id = _id;
-        obj.pic = article_images[0];
-        swiperData.push(obj);
+        if (article_images[0]) {
+          let obj = {};
+          obj._id = _id;
+          obj.pic = article_images[0];
+          swiperData.push(obj);
+        }
+        
       })
       that.setData({
         swiperData

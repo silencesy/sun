@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -65,6 +65,12 @@
 					"name": "文章详情页",
 					"pathName": "pages/articleDetails/articleDetails",
 					"query": "id=890198e15d37c19501372e153dc7adc7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/dynamic/dynamic",
 					"scene": null
 				}
 			]

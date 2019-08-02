@@ -155,7 +155,7 @@ Page({
             data: {
               avatarUrl: app.globalData.userInfo.avatarUrl,
               content: that.data.commentValue,
-              openid: app.globalData.userInfo.userInfo.openId,
+              openid: app.globalData.userInfo.openid,
               user_name: app.globalData.userInfo.nickName,
               _id: that.data.id,
             }
@@ -180,7 +180,7 @@ Page({
             data: {
               avatarUrl: app.globalData.userInfo.avatarUrl,
               content: that.data.commentValue,
-              openid: app.globalData.userInfo.userInfo.openId,
+              openid: app.globalData.userInfo.openid,
               user_name: app.globalData.userInfo.nickName,
               _id: that.data.id,
               parents_id: that.data.parents_id,

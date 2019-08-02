@@ -2,7 +2,7 @@
   <view class='banner-swiper'>
     <swiper swiperData="{{swiperData}}" />
   </view>
-  <view class='info-container'>
+  <view wx:if="{{articleData.length>1}}" class='info-container'>
     <infoItem
       wx:for="{{ articleData }}"
       wx:key="{{ index }}"

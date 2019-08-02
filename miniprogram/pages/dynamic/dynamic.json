@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "i-swipeout": "/iView/swipeout/index",
+    "i-cell-group": "/iView/cell-group/index",
+    "i-cell": "/iView/cell/index",
+    "messageItem": "/components/base/message-item/message-item"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 200
 }

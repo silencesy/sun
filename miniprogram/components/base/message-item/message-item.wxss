@@ -1,0 +1,67 @@
+/* components/base/massage-item/message-item.wxss */
+.message-item {
+  padding: 20rpx;
+}
+.title {
+  display: flex;
+}
+.title .user-avatar {
+  width: 80rpx;
+}
+.title .user-avatar image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-info {
+  width:600rpx;
+  padding-left: 10rpx;
+}
+.user-info .name {
+  color: #222;
+  margin-top: 6rpx;
+}
+.user-info .date {
+  color:#888;
+  font-size: 22rpx;
+}
+.reply {
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100rpx;
+  text-align: center;
+  color: #888;
+}
+.message-info {
+  padding: 10rpx 0 20rpx 0;
+  color: #444;
+}
+.article-info {
+  display: flex;
+  background-color: #f6f6f6;
+}
+.article-info .img image {
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+}
+.article-info .text-info {
+  display: flex;
+  width: 630rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+}
+
+.article-info .text-info .info {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  padding-left: 10rpx;
+}
+.article-info .text-info .name {
+  color: #999;
+}

@@ -18,18 +18,22 @@ const userDB = db.collection('user')
  * 
  */
 exports.main = async (event, context) => {
+  var data = event;
+  data.openid = data.userInfo.openId;
+  data.appid = data.userInfo.appId;
+  delete data.userInfo;
   let userData = await userDB.where({
-    userInfo: event.userInfo
+    openid: data.openid
   }).get();
   if (userData.data.length>0) {
     await userDB.where({
-      userInfo: event.userInfo
+      openid: data.openid
     }).update({
-      data: event
+      data: data
     })
   } else {
     await userDB.add({
-      data: event
+      data: data
     })
   }
   return event

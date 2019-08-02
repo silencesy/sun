@@ -4,3 +4,23 @@
 .iconfont.sunpinglun {
   font-size: 18px;
 }
+.no-message {
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.no-message .iconfont.sunmeiyoushuju {
+  font-size: 150rpx;
+  color: #f6b400;
+}
+.no-message .tip {
+  color: #999;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  text-align: center;
+}

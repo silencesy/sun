@@ -13,8 +13,9 @@ const userDB = db.collection('user')
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  const { userInfo: { openId } } = event
   return await userDB.where({
-    userInfo: event.userInfo
+    openid: openId
   }).get();
   
 }

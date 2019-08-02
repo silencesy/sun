@@ -1,5 +1,5 @@
 <view>
-  <view class='info-container'>
+  <view wx:if="{{articleData.length>0}}" class='info-container'>
     <infoItem
       wx:for="{{ articleData }}"
       wx:key="{{ index }}"
@@ -10,5 +10,9 @@
       comment="iconfont sunpinglun"
       address="iconfont sundingweiweizhi"
      />
+  </view>
+  <view wx:if="{{articleData.length==0}}" class="no-message">
+    <view class="iconfont sunmeiyoushuju"></view>
+    <view class="tip">没有消息</view>
   </view>
 </view>

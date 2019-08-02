@@ -1,0 +1,35 @@
+<view class="message-item">
+  <view class="title">
+    <view class="user-avatar">
+      <image src="{{data.userinfo.avatarUrl}}"></image>
+    </view>
+    <view class="user-info">
+      <view class="name">
+        {{data.userinfo.nickName}}
+      </view>
+      <view class="date">
+        {{data.date}}
+      </view>
+    </view>
+    <!-- <view class="reply">回复</view> -->
+  </view>
+  <view class="message-info" wx:if="{{data.type=='comment'}}">
+    {{data.content}}
+  </view>
+  <view class="message-info" wx:if="{{data.type=='like'}}">
+    <i-icon type="praise_fill" />攒了我
+  </view>
+  <view class="article-info" data-id="{{data.article_id}}" bindtap="goArticle">
+    <view class="img" wx:if="{{data.article.article_images.length>0}}">
+      <image src="{{data.article.article_images[0]}}"></image>
+    </view>
+    <view class="text-info">
+      <view class="name">
+        {{data.article.user_name}}:
+      </view>
+      <view class="info">
+        {{data.article.article_content}}
+      </view>
+    </view>
+  </view>
+</view>
