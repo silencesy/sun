@@ -1,48 +1,30 @@
-const app = getApp()
+// pages/dynamic/dynamic.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userCenterInfo: null
+    actions: [
+      {
+        name: '删除',
+        color: '#fff',
+        fontsize: '20',
+        width: 70,
+        icon: 'trash',
+        background: '#ed3f14'
+      }
+    ],
+    data: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-  },
-  setUserInfo() {
-    console.log(app)
-    let userInfo = app.globalData.userInfo || '';
-    this.setData({
-      userInfo
-    })
-  },
-  getUserCenterInfo() {
-    const that = this;
-    wx.cloud.callFunction({
-      name: 'userCenter'
-    }).then(res => {
-      that.setData({
-        userCenterInfo: res.result
-      })
-    }).catch(err => {
 
-    })
   },
-  bindGoRelease() {
-    wx.navigateTo({
-      url: '../release/release',
-    })
-  },
-  goLogin() {
-    wx.navigateTo({
-      url: '../authorization/authorization',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -54,10 +36,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setUserInfo();
-    this.getUserCenterInfo();
+    this.getMessage();
   },
-
+  getMessage() {
+    const that = this;
+    wx.cloud.callFunction({
+      name: 'likeList',
+      data: {
+        page: 0,
+        pageSize: 1000
+      }
+    }).then(res => {
+      console.log(res);
+      that.setData({
+        data: res.result
+      })
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh()
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -76,7 +75,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showNavigationBarLoading();
+    this.getMessage();
   },
 
   /**

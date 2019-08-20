@@ -7,7 +7,9 @@
     "pages/addArticle/addArticle",
     "pages/articleDetails/articleDetails",
     "pages/me/me",
-    "pages/authorization/authorization"
+    "pages/authorization/authorization",
+    "pages/like-list/like-list",
+    "pages/comment-list/comment-list"
   ],
   "window": {
     "backgroundColor": "#eeeeee",

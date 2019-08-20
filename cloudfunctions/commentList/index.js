@@ -13,19 +13,19 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const { page,pageSize } = event;
+  const { page, pageSize } = event;
   const openid = event.userInfo.openId;
-  // const openid = 'or1xG42vsgIovbgQPou7PoMicSJ0';
   var articleArr = [];
   var userArr = [];
   var middleWareData = {}
   var middleWareData2 = {}
-  var { data: messageData  } = await messageDB.where({
-    passive: openid
+  var { data: messageData } = await messageDB.where({
+    passive: openid,
+    type: 'comment'
   }).orderBy('date', 'desc')
-  .skip(page * pageSize)
-  .limit(pageSize)
-  .get();
+    .skip(page * pageSize)
+    .limit(pageSize)
+    .get();
   messageData.map((item) => {
     articleArr.push(item.article_id);
     userArr.push(item.trigger);
@@ -58,6 +58,7 @@ exports.main = async (event, context) => {
   });
   return messageData
 }
+
 function handlePublishTimeDesc(post_modified) {
   // 拿到当前时间戳和发布时的时间戳，然后得出时间戳差
   var curTime = new Date();

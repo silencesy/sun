@@ -1,0 +1,16 @@
+<!--pages/dynamic/dynamic.wxml-->
+<view>
+  <view wx:if="{{data.length>0}}">
+    <view class="item" wx:for="{{data}}" wx:key="{{index}}">
+      <i-swipeout  i-class="i-swipeout-demo-item" actions="{{actions}}">
+        <view slot="content">
+          <messageItem data="{{item}}" />
+        </view>
+      </i-swipeout>
+    </view>
+  </view>
+  <view wx:if="{{data.length==0}}" class="no-message">
+    <view class="iconfont sunmeiyoushuju"></view>
+    <view class="tip">没有消息</view>
+  </view>
+</view>

@@ -54,7 +54,7 @@ exports.main = async (event, context) => {
 
       // 最后判断时间差到底是属于哪个区间，然后return
       if (exceedWeek > 0) {
-        return post_modified;
+        return dateFormatting(post_modified);
       } else {
         if (exceedDay < 7 && exceedDay > 0) {
           return exceedDay + '天前';
@@ -70,6 +70,17 @@ exports.main = async (event, context) => {
           }
         }
       }
+    }
+
+    function dateFormatting(data) {
+      var date = new Date(data);
+      Y = date.getFullYear() + '/';
+      M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+      D = date.getDate() + ' ';
+      // h = date.getHours() + ':';
+      // m = date.getMinutes() + ':';
+      // s = date.getSeconds();
+      return Y + M + D;
     }
 
 
