@@ -19,6 +19,8 @@
       wx:for="{{ data.article_images }}" 
       wx:key="{{ index }}"
       src='{{ item }}'
+      data-src="{{ item }}" 
+      bindtap="previewImage"
       mode="widthFix"
     ></image>
   </view>

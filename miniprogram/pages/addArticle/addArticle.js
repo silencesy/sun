@@ -158,6 +158,7 @@ Page({
               icon: 'none',
               duration: 2000,
               success: function() {
+                wx.setStorageSync('release',true);
                 setTimeout(()=>{
                   wx.redirectTo({
                     url: '../articleDetails/articleDetails?id=' + res._id

@@ -23,7 +23,6 @@ Page({
     this.getArticleData();
     this.getSwiperData();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -35,9 +34,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.isRefresh();
   },
-
+  isRefresh() {
+    let isRefreshFlag = wx.getStorageSync('release') || false;
+    if (isRefreshFlag) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      this.refresh();
+    }
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -56,6 +63,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.refresh();
+  },
+  refresh() {
+    wx.removeStorage({
+      key: 'release'
+    })
     wx.showNavigationBarLoading();
     this.params.page = 0;
     this.getArticleData(true);

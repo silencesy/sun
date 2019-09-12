@@ -1,0 +1,4 @@
+<!--pages/test/test.wxml-->
+<form report-submit="{{true}}" bindsubmit="onSubmit">
+  <button form-type="submit">推送模板</button>
+</form>

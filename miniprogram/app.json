@@ -9,7 +9,8 @@
     "pages/me/me",
     "pages/authorization/authorization",
     "pages/like-list/like-list",
-    "pages/comment-list/comment-list"
+    "pages/comment-list/comment-list",
+    "pages/test/test"
   ],
   "window": {
     "backgroundColor": "#eeeeee",
