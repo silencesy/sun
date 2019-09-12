@@ -1,8 +1,8 @@
  //app.js
 
+
 App({
   onLaunch: function () {
-
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -16,10 +16,31 @@ App({
     wx.cloud.callFunction({
       name: 'whetherToRegister',
     }).then(res => {
-      console.log(res);
       if (res.result.data.length>0){
         this.globalData.userInfo = res.result.data[0];
         wx.setStorageSync('userInfo', res.result.data[0]);
+        const db = wx.cloud.database()
+        const watcher = db.collection('message').where({
+          passive: this.globalData.userInfo.openid,
+          is_read: false
+        }).watch({
+          onChange: (res) => {
+            if (res.docs.length>0) {
+              wx.setTabBarBadge({
+                index: 1,
+                text: String(res.docs.length)
+              })
+            } else {
+              wx.removeTabBarBadge({
+                index: 1
+              })
+            }
+            
+          },
+          onError: (err) => {
+            console.error(err)
+          }
+        })
       } else {
         this.globalData.userInfo = null;
         wx.setStorageSync('userInfo', null);

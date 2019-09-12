@@ -26,6 +26,13 @@ exports.main = async (event, context) => {
   .skip(page * pageSize)
   .limit(pageSize)
   .get();
+  await messageDB.where({
+    passive: openid
+  }).update({
+    data: {
+      is_read: true
+    },
+  })
   messageData.map((item) => {
     articleArr.push(item.article_id);
     userArr.push(item.trigger);
